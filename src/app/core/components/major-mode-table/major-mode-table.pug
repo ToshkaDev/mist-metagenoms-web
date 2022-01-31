@@ -1,0 +1,172 @@
+table(*ngIf="stpMatrix")
+  thead
+    tr
+      th(colspan="4")
+      th.tcp-group(
+        colspan="6"
+      ) Two-component
+      th(colspan="3")
+    tr
+      th.text-left Accession
+      th.text-left Name
+      th Size (Mbp)
+      th One-component
+      th
+        abbr(title="Histidine kinase") HK
+      th
+        abbr(title="Hybrid histidine kinase") HHK
+      th
+        abbr(title="Response regulator") RR
+      th
+        abbr(title="Hybrid response regulator") HRR
+      th Other
+      th Chemosensory systems
+      th
+        abbr(title="Extra cytoplasmic function") ECF
+      th Other
+      th Total
+  tbody
+    ng-template(
+      ngFor
+      let-component
+      [ngForOf]="stpMatrix.components"
+    )
+      tr
+        td.text-left.no-border {{ component.version }}
+        td.text-left.no-border {{ component.name }}
+        td {{ component.length / 1000000 | number:'1.2' }}
+        td
+          a(
+            *ngIf="component.counts.ocp?.$total > 0"
+            routerLink="signal-genes"
+            [queryParams]="{componentId: component.id, ranks: 'ocp'}"
+          ) {{ component.counts.ocp.$total }}
+        td
+          a(
+            *ngIf="component.counts.tcp?.hk?.$total > 0"
+            routerLink="signal-genes"
+            [queryParams]="{componentId: component.id, ranks: 'tcp,hk'}"
+          ) {{ component.counts.tcp.hk.$total }}
+        td
+          a(
+            *ngIf="component.counts.tcp?.hhk?.$total > 0"
+            routerLink="signal-genes"
+            [queryParams]="{componentId: component.id, ranks: 'tcp,hhk'}"
+          ) {{ component.counts.tcp.hhk.$total }}
+        td
+          a(
+            *ngIf="component.counts.tcp?.rr?.$total > 0"
+            routerLink="signal-genes"
+            [queryParams]="{componentId: component.id, ranks: 'tcp,rr'}"
+          ) {{ component.counts.tcp.rr.$total }}
+        td
+          a(
+            *ngIf="component.counts.tcp?.hrr?.$total > 0"
+            routerLink="signal-genes"
+            [queryParams]="{componentId: component.id, ranks: 'tcp,hrr'}"
+          ) {{ component.counts.tcp.hrr.$total }}
+        td
+          a(
+            *ngIf="component.counts.tcp?.other?.$total > 0"
+            routerLink="signal-genes"
+            [queryParams]="{componentId: component.id, ranks: 'tcp,other'}"
+          ) {{ component.counts.tcp.other.$total }}
+        td
+          a(
+            *ngIf="component.counts.chemotaxis?.$total > 0"
+            routerLink="signal-genes"
+           [queryParams]="{componentId: component.id, ranks: 'chemotaxis'}"
+          ) {{ component.counts.chemotaxis.$total }}
+        td
+          a(
+            *ngIf="component.counts.ecf?.$total > 0"
+            routerLink="signal-genes"
+            [queryParams]="{componentId: component.id, ranks: 'ecf'}"
+          ) {{ component.counts.ecf.$total }}
+        td
+          a(
+            *ngIf="component.counts.other?.$total > 0"
+            routerLink="signal-genes"
+            [queryParams]="{componentId: component.id, ranks: 'other'}"
+          ) {{ component.counts.other.$total }}
+        td
+          a(
+            *ngIf="component.counts.$total > 0"
+            routerLink="signal-genes"
+            [queryParams]="{componentId: component.id}"
+          ) {{ component.counts.$total }}
+    tr(*ngIf="stpMatrix.numComponents > stpMatrixLimit")
+      td.no-border(colspan="2")
+      td ...
+      td ...
+      td ...
+      td ...
+      td ...
+      td ...
+      td ...
+      td ...
+      td ...
+      td ...
+      td ...
+    tr
+      th.text-right.no-border(colspan="2") Total
+      td {{ stpMatrix.totalLength / 1000000 | number:'1.2' }}
+      td
+        a(
+          *ngIf="stpMatrix.counts.ocp?.$total > 0"
+          routerLink="signal-genes"
+          [queryParams]="{ranks: 'ocp'}"
+        ) {{ stpMatrix.counts.ocp.$total }}
+      td
+        a(
+          *ngIf="stpMatrix.counts.tcp?.hk?.$total > 0"
+          routerLink="signal-genes"
+          [queryParams]="{ranks: 'tcp,hk'}"
+        ) {{ stpMatrix.counts.tcp.hk.$total }}
+      td
+        a(
+          *ngIf="stpMatrix.counts.tcp?.hhk?.$total > 0"
+          routerLink="signal-genes"
+          [queryParams]="{ranks: 'tcp,hhk'}"
+        ) {{ stpMatrix.counts.tcp.hhk.$total }}
+      td
+        a(
+          *ngIf="stpMatrix.counts.tcp?.rr?.$total > 0"
+          routerLink="signal-genes"
+          [queryParams]="{ranks: 'tcp,rr'}"
+        ) {{ stpMatrix.counts.tcp.rr.$total }}
+      td
+        a(
+          *ngIf="stpMatrix.counts.tcp?.hrr?.$total > 0"
+          routerLink="signal-genes"
+          [queryParams]="{ranks: 'tcp,hrr'}"
+        ) {{ stpMatrix.counts.tcp.hrr.$total }}
+      td
+        a(
+          *ngIf="stpMatrix.counts.tcp?.other?.$total > 0"
+          routerLink="signal-genes"
+          [queryParams]="{ranks: 'tcp,other'}"
+        ) {{ stpMatrix.counts.tcp.other.$total }}
+      td
+        a(
+          *ngIf="stpMatrix.counts.chemotaxis?.$total > 0"
+          routerLink="signal-genes"
+          [queryParams]="{ranks: 'chemotaxis'}"
+        ) {{ stpMatrix.counts.chemotaxis.$total }}
+      td
+        a(
+          *ngIf="stpMatrix.counts.ecf?.$total > 0"
+          routerLink="signal-genes"
+          [queryParams]="{ranks: 'ecf'}"
+        ) {{ stpMatrix.counts.ecf.$total }}
+      td
+        a(
+          *ngIf="stpMatrix.counts.other?.$total > 0"
+          routerLink="signal-genes"
+          [queryParams]="{ranks: 'other'}"
+        ) {{ stpMatrix.counts.other.$total }}
+      td
+        a(
+          *ngIf="stpMatrix.counts.$total > 0"
+          routerLink="signal-genes"
+        ) {{ stpMatrix.counts.$total }}

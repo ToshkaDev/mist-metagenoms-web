@@ -1,0 +1,22 @@
+%center {
+    display: flex;
+    justify-content: center;
+}
+
+.center {
+    @extend %center;
+}
+
+.shop-cart-button {
+    color: white;
+    @extend %center;
+    width: 130px;
+    height: 45px;
+    margin-left: 5px;
+    border-radius: 12px;
+}
+
+.mat-button:hover {
+    background-color: #96c75c !important;
+}
+

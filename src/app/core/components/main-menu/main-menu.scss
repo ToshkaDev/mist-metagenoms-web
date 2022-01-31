@@ -1,0 +1,27 @@
+.row {
+    margin: 0 2em;
+}
+
+mat-form-field {
+    margin-right: 1em;
+}
+
+.non-decor-green {
+    color: #96c75c;
+    text-decoration: none;
+}
+
+@mixin md-icon-size($size: 24px) {
+    font-size: $size;
+    height: $size;
+    width: $size;
+    line-height: $size;
+}
+
+.material-icons.mat-icon {
+    @include md-icon-size(58px);
+}
+
+.cart-details {
+    color: #4d4d4d;
+}

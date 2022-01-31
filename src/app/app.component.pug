@@ -1,0 +1,67 @@
+header
+  .row
+    //- .three.columns.mist-logo
+    .four.columns.mist-logo
+      a(routerLink="/")
+        img.mist-svg(src="assets/images/mist_logo_white.svg")
+    //- .five.columns.server-works
+    //-   br
+    //-   p The database is temporarily down due to system update.
+    //- .four.columns.notice
+    .five.columns
+      br
+      br
+      a.citation(href="https://doi.org/10.1093/nar/gkz988", target="_blank") Gumerov VM, Ortega DR, Adebali O, Ulrich LE, and Zhulin IB (2020)
+        span(style="font-style:italic") &nbsp;Nucleic Acid Research 48: D459–D464.
+    .three.columns.notice.social-icons
+      br
+      a.social(routerLink="/help"
+          matTooltip="Help" [matTooltipPosition]="'below'" matTooltipClass="tooltipClass")
+        fa-icon([icon]="faLifeRing")
+      a.social(href="mailto:gumerov.1@osu.edu" target="_blank"
+          matTooltip="Contact" [matTooltipPosition]="'below'" matTooltipClass="tooltipClass")
+        fa-icon([icon]="faEnvelopeSquare")
+      a.social(href="https://api.mistdb.caltech.edu/" target="_blank"
+          matTooltip="API" [matTooltipPosition]="'below'" matTooltipClass="tooltipClass")
+        fa-icon([icon]="faBook")
+      br
+      a.social(href="https://twitter.com/mist3db" target="_blank"
+          matTooltip="Twitter" [matTooltipPosition]="'below'" matTooltipClass="tooltipClass")
+        fa-icon([icon]="faTwitterSquare")
+      a.social(href="https://gitter.im/MiST-db/community" target="_blank"
+          matTooltip="Gitter" [matTooltipPosition]="'below'" matTooltipClass="tooltipClass")
+        fa-icon([icon]="faGitter")
+      a.social(href="http://trend.evobionet.com/" target="_blank"
+          matTooltip="TREND" [matTooltipPosition]="'below'" matTooltipClass="tooltipClass")
+        fa-icon([icon]="faTrend")
+
+.content
+  .breadcrumbs
+    mc-breadcrumbs
+
+  mist-main-menu
+
+  router-outlet
+
+footer
+  .container.footer-content
+    a.footer-style(href="https://www.nih.gov/" target="_blank")
+      img(src="assets/images/NIH-min.png"
+        [class.logo-nih]="isNnihLogoActive == false"
+        [class.logo-nih-active]="isNnihLogoActive" #nihLogo)
+    a.footer-style(href="https://www.osu.edu/" target="_blank")
+      img(src="assets/images/OSU.png"
+        [class.logo-osu]="isOsuLogoActive == false"
+        [class.logo-osu-active]="isOsuLogoActive" #osuLogo)
+    a.footer-style(href="http://www.caltech.edu/" target="_blank")
+      img(src="assets/images/Caltech_LOGO-Orange_RGB.png"
+        [class.logo-caltech]="isCaltechLogoActive == false"
+        [class.logo-caltech-active]="isCaltechLogoActive" #caltechLogo)
+    a.footer-style(href="https://www.sabanciuniv.edu/en" target="_blank")
+      img(src="assets/images/sabanci_universitesi_logo.png"
+        [class.logo-sabanci]="isSabanciLogoActive == false"
+        [class.logo-sabanci-active]="isSabanciLogoActive" #sabanciLogo)
+    a.footer-style(href="https://www.netlify.com" target="_blank")
+      img(src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg"
+        [class.logo-netlify]="isNetlifyLogoActive == false"
+        [class.logo-netlify-active]="isNetlifyLogoActive" alt="Deploys by Netlify" #netlifyLogo)

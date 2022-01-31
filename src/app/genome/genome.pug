@@ -1,0 +1,63 @@
+.row(style="margin-top: 2em;")
+  .six.columns
+    .worker-state-table.detail-uber(*ngIf="genomeViewModel")
+        table
+            span Genome analysis status: 
+            tbody
+                tr
+                    ng-template(
+                        ngFor
+                        let-workerModule
+                        [ngForOf]="genomeViewModel.objectKeys(genomeViewModel.workerModules)"
+                        let-i="index"
+                    )
+                        td(*ngIf="i < 5" 
+                          [ngStyle]='genomeViewModel.getWorkerModuelStyle(genomeViewModel.workerModules[workerModule])'
+                          matTooltip="{{ genomeViewModel.workerModulesTooltips[workerModule] }}"
+                          [matTooltipPosition]="'after'" 
+                          [matTooltipClass]="'tooltipClass'"
+                        ) {{ workerModule }}
+                tr
+                    ng-template(
+                        ngFor
+                        let-workerModule
+                        [ngForOf]="genomeViewModel.objectKeys(genomeViewModel.workerModules)"
+                        let-i="index"
+                    )
+                        td(*ngIf="i >= 5" 
+                          [ngStyle]='genomeViewModel.getWorkerModuelStyle(genomeViewModel.workerModules[workerModule])'
+                          matTooltip="{{ genomeViewModel.workerModulesTooltips[workerModule] }}"
+                          [matTooltipPosition]="'after'" 
+                          [matTooltipClass]="'tooltipClass'"
+                        ) {{ workerModule }}
+.row(style="margin-top: -12px;")
+  .six.columns
+    mist-genome-view(
+      [entity$]="genome$"
+      [genomeViewModel]="genomeViewModel"
+    )
+
+  .six.columns
+    mist-st-profile(
+      [genomeVersion]="assemblyVersion"
+    )
+
+.row
+  .twelve-columns
+    h3 Genomic distribution of signal transduction proteins
+
+.row
+  .twelve.columns.distribution-table
+    h4 Major modes
+    mist-major-mode-table(
+      [stpMatrix]="stpMatrix$ | async"
+      [stpMatrixLimit]="stpMatrixLimit"
+    )
+
+.row
+  .twelve.columns.distribution-table
+    h4 Chemosensory systems
+    mist-chemotaxis-table(
+      [stpMatrix]="stpMatrix$ | async"
+      [stpMatrixLimit]="stpMatrixLimit"
+    )

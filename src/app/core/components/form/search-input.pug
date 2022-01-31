@@ -1,0 +1,17 @@
+mat-form-field
+  input(matInput [placeholder]="placeholder" [value]="query" (keyup)="queryChange$.emit($event.target.value)")
+  mat-icon(*ngIf="!isFetching && !query" matSuffix) search
+  button(*ngIf="query?.length" type="button" matSuffix mat-button mat-icon-button (click)="queryChange$.emit('')")
+    mat-icon close
+mat-form-field(*ngIf="selectedComponent == 'genes'")
+  input.scope-input(
+    matInput
+    matTooltip="{{ scopeIdentifier }}"
+    [matTooltipPosition]="'above'" 
+    [placeholder]="scope_placeholder" 
+    [value]="scope" 
+    (keyup)="scopeChange$.emit($event.target.value)"
+  )
+  mat-icon(*ngIf="!isFetchingScope && !scope" matSuffix) search
+  button(*ngIf="scope?.length" type="button" matSuffix mat-button mat-icon-button (click)="scopeChange$.emit('')")
+    mat-icon close

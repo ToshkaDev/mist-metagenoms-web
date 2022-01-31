@@ -1,0 +1,32 @@
+.row {
+    margin: 0 2em;
+}
+
+.signal-domains-table {
+    margin-left: auto;
+    margin-right: auto;
+    table {
+        border-collapse: collapse;
+        margin: 0;
+        font-size: 14px;
+    }
+    td, th {
+        padding: 0 .5em;
+        text-align: left;
+    }
+}
+
+.boldStlye {
+    font-weight: bold;
+}
+
+.infoLinks {
+    list-style: none;
+    hr {
+        margin: 15px 0;
+    }
+}
+
+.sectinos-list {
+    list-style-type: disc;
+}

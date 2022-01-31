@@ -1,0 +1,69 @@
+table.distribution-table(*ngIf="stpMatrix")
+  thead
+    tr
+      th Accession
+      th Name
+      th Size (Mbp)
+      th
+        abbr(title="Methyl-accepting chemotaxis protein") MCP
+      th CheW
+      th CheA
+      th CheR
+      th CheB
+      th CheCX
+      th CheV
+      th CheD
+      th CheZ
+      th Other
+      th Total
+  tbody
+    ng-template(
+      ngFor
+      let-component
+      [ngForOf]="stpMatrix.components"
+    )
+      tr
+        td.text-left.no-border {{ component.version }}
+        td.text-left.no-border {{ component.name }}
+        td {{ component.length / 1000000 | number:'1.2' }}
+        td(*ngFor="let secondaryRank of secondaryRanks")
+          mist-chemotaxis-count-links(
+            [componentId]="component.id"
+            [counts]="component.counts.chemotaxis"
+            [secondaryRank]="secondaryRank"
+          )
+        td
+          a(
+            *ngIf="component.counts.chemotaxis?.$total > 0"
+            routerLink="signal-genes"
+            [queryParams]="{componentId: component.id, ranks: PrimaryRank.chemotaxis}"
+          ) {{ component.counts.chemotaxis.$total }}
+
+    tr(*ngIf="stpMatrix.numComponents > stpMatrixLimit")
+      td.no-border(colspan="2")
+      td ...
+      td ...
+      td ...
+      td ...
+      td ...
+      td ...
+      td ...
+      td ...
+      td ...
+      td ...
+      td ...
+
+    tr
+      th.text-right.no-border(colspan="2") Total
+      td {{ stpMatrix.totalLength / 1000000 | number:'1.2' }}
+      td(*ngFor="let secondaryRank of secondaryRanks")
+        mist-chemotaxis-count-links(
+          [counts]="stpMatrix.counts.chemotaxis"
+          [secondaryRank]="secondaryRank"
+        )
+      td
+        a(
+          *ngIf="stpMatrix.counts.chemotaxis?.$total > 0"
+          routerLink="signal-genes"
+          [queryParams]="{ranks: PrimaryRank.chemotaxis}"
+        ) {{ stpMatrix.counts.chemotaxis.$total }}
